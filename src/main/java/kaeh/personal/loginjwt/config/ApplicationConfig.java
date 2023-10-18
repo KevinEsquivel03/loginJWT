@@ -1,6 +1,6 @@
-package kaeh.personal.loginjwt.config.application;
+package kaeh.personal.loginjwt.config;
 
-import kaeh.personal.loginjwt.repository.user.UserRepository;
+import kaeh.personal.loginjwt.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

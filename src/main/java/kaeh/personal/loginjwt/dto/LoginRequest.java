@@ -1,4 +1,4 @@
-package kaeh.personal.loginjwt.model.auth;
+package kaeh.personal.loginjwt.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,16 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * RegisterRequest class.
+ * LoginRequest class.
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequest {
+public class LoginRequest {
     String username;
     String password;
-    String firstName;
-    String lastName;
-    String country;
 }

@@ -1,4 +1,4 @@
-package kaeh.personal.loginjwt.model.auth;
+package kaeh.personal.loginjwt.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

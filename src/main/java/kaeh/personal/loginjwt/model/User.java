@@ -1,9 +1,10 @@
-package kaeh.personal.loginjwt.model.user;
+package kaeh.personal.loginjwt.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import kaeh.personal.loginjwt.security.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

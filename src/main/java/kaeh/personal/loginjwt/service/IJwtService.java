@@ -1,4 +1,4 @@
-package kaeh.personal.loginjwt.service.jwt;
+package kaeh.personal.loginjwt.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

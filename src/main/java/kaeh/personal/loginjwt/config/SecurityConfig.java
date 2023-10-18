@@ -1,6 +1,6 @@
-package kaeh.personal.loginjwt.config.security;
+package kaeh.personal.loginjwt.config;
 
-import kaeh.personal.loginjwt.filter.jwt.JwtAuthenticationFilter;
+import kaeh.personal.loginjwt.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

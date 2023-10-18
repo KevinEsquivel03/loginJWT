@@ -1,10 +1,11 @@
-package kaeh.personal.loginjwt.service.jwt;
+package kaeh.personal.loginjwt.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import kaeh.personal.loginjwt.service.IJwtService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 

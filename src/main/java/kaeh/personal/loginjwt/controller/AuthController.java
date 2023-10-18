@@ -1,9 +1,9 @@
-package kaeh.personal.loginjwt.controller.auth;
+package kaeh.personal.loginjwt.controller;
 
-import kaeh.personal.loginjwt.model.auth.AuthResponse;
-import kaeh.personal.loginjwt.model.auth.LoginRequest;
-import kaeh.personal.loginjwt.model.auth.RegisterRequest;
-import kaeh.personal.loginjwt.service.auth.AuthService;
+import kaeh.personal.loginjwt.dto.AuthResponse;
+import kaeh.personal.loginjwt.dto.LoginRequest;
+import kaeh.personal.loginjwt.dto.RegisterRequest;
+import kaeh.personal.loginjwt.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

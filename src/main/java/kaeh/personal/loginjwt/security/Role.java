@@ -1,4 +1,4 @@
-package kaeh.personal.loginjwt.model.user;
+package kaeh.personal.loginjwt.security;
 
 /**
  * Role enum.

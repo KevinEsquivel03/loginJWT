@@ -1,13 +1,13 @@
-package kaeh.personal.loginjwt.service.auth;
+package kaeh.personal.loginjwt.service;
 
 import jakarta.persistence.EntityNotFoundException;
-import kaeh.personal.loginjwt.model.auth.AuthResponse;
-import kaeh.personal.loginjwt.model.auth.LoginRequest;
-import kaeh.personal.loginjwt.model.auth.RegisterRequest;
-import kaeh.personal.loginjwt.model.user.Role;
-import kaeh.personal.loginjwt.repository.user.UserRepository;
-import kaeh.personal.loginjwt.model.user.User;
-import kaeh.personal.loginjwt.service.jwt.JwtService;
+import kaeh.personal.loginjwt.dto.AuthResponse;
+import kaeh.personal.loginjwt.dto.LoginRequest;
+import kaeh.personal.loginjwt.dto.RegisterRequest;
+import kaeh.personal.loginjwt.security.Role;
+import kaeh.personal.loginjwt.repository.UserRepository;
+import kaeh.personal.loginjwt.model.User;
+import kaeh.personal.loginjwt.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

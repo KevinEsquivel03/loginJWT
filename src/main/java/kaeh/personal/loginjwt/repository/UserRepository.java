@@ -1,6 +1,6 @@
-package kaeh.personal.loginjwt.repository.user;
+package kaeh.personal.loginjwt.repository;
 
-import kaeh.personal.loginjwt.model.user.User;
+import kaeh.personal.loginjwt.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
