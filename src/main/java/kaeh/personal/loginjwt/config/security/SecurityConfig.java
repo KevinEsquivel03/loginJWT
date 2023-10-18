@@ -12,6 +12,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * SecurityConfig class.
+ */
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -22,19 +25,26 @@ public class SecurityConfig {
 
     private final AuthenticationProvider authProvider;
 
+    /**
+     * Configures the security filter chain for the HTTP requests.
+     *
+     * @param http the HttpSecurity object to configure
+     * @return the configured SecurityFilterChain
+     * @throws Exception if an error occurs during configuration
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authRequest -> {authRequest
-                    .requestMatchers("/auth/**").permitAll().anyRequest().authenticated();
-                })
+                .csrf(AbstractHttpConfigurer::disable) // Disable CSRF protection
+                .authorizeHttpRequests(authRequest -> authRequest
+                            .requestMatchers("/auth/**").permitAll() // Allow all requests starting with "/auth/"
+                            .anyRequest().authenticated()// Require authentication for all other requests
+                )
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authProvider)
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                ;
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Configure stateless session management
+                .authenticationProvider(authProvider) // Set the authentication provider
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // Add the JWT authentication filter before the UsernamePasswordAuthenticationFilter
 
-        return http.build();
+        return http.build(); // Build and return the configured SecurityFilterChain
     }
 }

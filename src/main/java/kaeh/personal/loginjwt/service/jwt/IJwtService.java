@@ -2,8 +2,11 @@ package kaeh.personal.loginjwt.service.jwt;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * IJwtService interface.
+ */
 public interface IJwtService {
-    public String getToken(UserDetails user);
+    String generateToken(UserDetails user);
 
     String getUsernameFromToken(String token);
 

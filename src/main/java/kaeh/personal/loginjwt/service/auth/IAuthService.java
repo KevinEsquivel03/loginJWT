@@ -4,7 +4,10 @@ import kaeh.personal.loginjwt.model.auth.AuthResponse;
 import kaeh.personal.loginjwt.model.auth.LoginRequest;
 import kaeh.personal.loginjwt.model.auth.RegisterRequest;
 
+/**
+ * IAuthService interface.
+ */
 public interface IAuthService {
-    public AuthResponse login(LoginRequest loginRequest);
-    public AuthResponse register(RegisterRequest registerRequest);
+    AuthResponse login(LoginRequest loginRequest);
+    AuthResponse register(RegisterRequest registerRequest);
 }
