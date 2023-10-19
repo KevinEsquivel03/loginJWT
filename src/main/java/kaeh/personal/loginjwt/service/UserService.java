@@ -20,4 +20,8 @@ public class UserService implements UserDetailsService {
                 .findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
+
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
+    }
 }

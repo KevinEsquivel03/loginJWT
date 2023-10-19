@@ -5,6 +5,7 @@ import kaeh.personal.loginjwt.dto.LoginRequest;
 import kaeh.personal.loginjwt.dto.RegisterRequest;
 import kaeh.personal.loginjwt.service.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,27 +23,34 @@ public class AuthController {
     private final AuthService authService;
 
     /**
-     * A description of the entire Java function.
+     * Performs user authentication.
      *
-     * @param  request   description of parameter
-     *                   (replace `paramName` with the actual name of the parameter)
-     * @return           description of return value
+     * @param request The login request object.
+     * @return The authentication response.
      */
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> loginUser(@RequestBody LoginRequest request) {
-        AuthResponse response = authService.login(request);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
+        try {
+            AuthResponse response = authService.login(request);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 
     /**
-     * Registers a user.
+     * Register a new user.
      *
-     * @param  request   the registration request
-     * @return           the authentication response
+     * @param request The registration request object.
+     * @return The authentication response.
      */
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> registerUser(@RequestBody RegisterRequest request) {
-        AuthResponse response = authService.register(request);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
+        try {
+            AuthResponse response = authService.register(request);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
 }
