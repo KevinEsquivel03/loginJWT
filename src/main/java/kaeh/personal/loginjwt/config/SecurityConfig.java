@@ -1,9 +1,11 @@
 package kaeh.personal.loginjwt.config;
 
 import kaeh.personal.loginjwt.security.JwtAuthenticationFilter;
+import kaeh.personal.loginjwt.security.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -38,6 +40,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable) // Disable CSRF protection
                 .authorizeHttpRequests(authRequest -> authRequest
                             .requestMatchers("/auth/**").permitAll() // Allow all requests starting with "/auth/"
+                            .requestMatchers(HttpMethod.DELETE,"/user/**").hasAuthority(Role.ADMIN.name()) // Require the admin role for all delete requests starting with "/user/"
                             .anyRequest().authenticated()// Require authentication for all other requests
                 )
                 .sessionManagement(session -> session

@@ -4,27 +4,38 @@ import jakarta.persistence.EntityNotFoundException;
 import kaeh.personal.loginjwt.model.User;
 import kaeh.personal.loginjwt.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
     @GetMapping("/{username}")
-    public ResponseEntity<User> getUserInfo(@PathVariable String username) {
+    public ResponseEntity<Object> getUserInfo(@PathVariable String username) {
         try {
             User user = userService.loadUserByUsername(username);
             return ResponseEntity.ok(user);
-        } catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException | UsernameNotFoundException e) {
             return ResponseEntity.notFound().build();
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().body("Invalid username or id");
         }
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        if (users.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(users);
     }
 
     @DeleteMapping("/{id}")
@@ -34,10 +45,9 @@ public class UserController {
             userService.deleteUserById(idLong);
             return ResponseEntity.ok("User successfully deleted");
         } catch (NumberFormatException e) {
-            return ResponseEntity.badRequest().body("invalid id");
+            return ResponseEntity.badRequest().body("Invalid id");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
-
 }

@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
@@ -19,6 +21,10 @@ public class UserService implements UserDetailsService {
         return userRepository
                 .findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     public void deleteUserById(Long id) {
